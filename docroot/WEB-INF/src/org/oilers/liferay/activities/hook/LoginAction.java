@@ -32,7 +32,7 @@ public class LoginAction extends Action {
 			user.getExpandoBridge().setAttribute(LOGIN_PROPERTY, logins + 1);
 			UserLocalServiceUtil.updateUser(user);
 		} catch (Exception e) {
-			log.error(e);
+			log.error("Something went wrong in the post login action!!",e);
 		}
 	}
 
