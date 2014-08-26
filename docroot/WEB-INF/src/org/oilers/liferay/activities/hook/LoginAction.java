@@ -24,13 +24,13 @@ public class LoginAction extends Action {
 		log.info("* Login Hook hit.                           *");
 		log.info("*********************************************");
 		try {
+			//This SHOULD work, but it's throwing an exception with 6.2 GA2
 			User user = PortalUtil.getUser(request);
 			if(!user.getExpandoBridge().hasAttribute(LOGIN_PROPERTY)) {
 				user.getExpandoBridge().addAttribute(LOGIN_PROPERTY, ExpandoColumnConstants.INTEGER, 0);
 			}
 			Integer logins = (Integer)user.getExpandoBridge().getAttribute(LOGIN_PROPERTY);
 			user.getExpandoBridge().setAttribute(LOGIN_PROPERTY, logins + 1);
-			UserLocalServiceUtil.updateUser(user);
 		} catch (Exception e) {
 			log.error("Something went wrong in the post login action!!",e);
 		}
